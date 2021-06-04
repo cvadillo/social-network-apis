@@ -1,0 +1,25 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "Using MongoDB to create social network APIS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvadillo/social-network-apis.git"
+  },
+  "keywords": [
+    "mongodb",
+    "social",
+    "network",
+    "apis"
+  ],
+  "author": "Carlos Vadillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cvadillo/social-network-apis/issues"
+  },
+  "homepage": "https://github.com/cvadillo/social-network-apis#readme"
+}
