@@ -1,7 +1,7 @@
 const { User } = require('../models');
 
 const userController = {
-	// getall pizzas
+	// getall Users
 	getAllUsers(req, res) {
 		User.find({})
 			.then(dbUserData => res.json(dbUserData))
@@ -11,11 +11,11 @@ const userController = {
 			});
 	},
 
-	// get one pizza by id
+	// get one User by id
 	getUserById({ params }, res) {
 		User.findOne({ _id: params.id })
-			.then(dbPizzaData => {
-				// If no pizza is found, send 404
+			.then(dbUserData => {
+				// If no User is found, send 404
 				if(!dbUserData) {
 					res.status(404).json({ message: 'No user found, fool!' });
 					return;
@@ -59,7 +59,35 @@ const userController = {
 				res.json(dbUserData);
 			})
 			.catch(err => res.status(400).json(err));
-	}
+	},
+
+	// Adding a friend
+	addFriend({ params }, res) {
+    	User.findOneAndUpdate(
+      		{ _id: params.userId },
+      		{ $push: { friends: params.friendId } },
+      		{ new: true, runValidators: true }
+    	)
+      	.then(dbUserData => {
+        	if (!dbUserData) {
+          		res.status(404).json({ message: 'No user with this id!' });
+          		return;
+        	}
+        res.json(dbUserData);
+      	})
+      	.catch(err => res.json(err));
+  	},
+
+  	// Take away your friend
+  	removeFriend({ params }, res) {
+    	User.findOneAndUpdate(
+      		{ _id: params.userId },
+      		{ $pull: { friends: params.friendId } },
+      		{ new: true }
+    	)
+      	.then(dbUserData => res.json(dbUserData))
+      	.catch(err => res.json(err));
+  	}
 };
 
 module.exports = userController;

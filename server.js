@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -19,4 +21,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-
 // Logging the mongo queries being executed
 mongoose.set('debug', true);
 
-app.listen(PORT, () => console.log(`🌍 You're now connected on localhost:${PORT} holmes! Let's rock & roll!`));
+app.listen(PORT, () => console.log(`🌎🌍🌏 You're now connected on localhost:${PORT} holmes! Let's rock & roll!🎸🎶`));
